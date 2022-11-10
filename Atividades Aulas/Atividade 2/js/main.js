@@ -88,4 +88,22 @@ function addAnimalsTable(animalsContent){
 
 }
 
+function addTitlesTable(titles){
+    const arraySize = titles.length;
+
+    let linha = document.createElement('tr')
+    header.appendChild(linha);
+
+    for(let i = 0; i < arraySize; i++){
+        
+        
+        let addTh = document.createElement('th');
+        linha.appendChild(addTh);
+        addTh.textContent = titles[i];
+
+    }
+
+}
+
+addTitlesTable(titles);
 addAnimalsTable(animalsContent)
