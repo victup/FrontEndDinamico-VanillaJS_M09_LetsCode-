@@ -68,7 +68,7 @@ function addAnimalsTable(animalsContent){
         let linha = document.createElement('tr')
         tableBody.appendChild(linha);
         let coluna = document.createElement('td');
-        tableBody.appendChild(coluna);
+        linha.appendChild(coluna);
         coluna.textContent = animalsContent[i].nome;
         
     }
