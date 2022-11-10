@@ -15,7 +15,7 @@ const animalsContent = [
     {
         "nome": "Lobo",
         "especie": "Lobo-vermelho",
-        "local": "América do Norte",
+        "pais": "América do Norte",
         "exemplares": 200
       },
     {
@@ -67,9 +67,22 @@ function addAnimalsTable(animalsContent){
     for(let i = 0; i < arraySize; i++){
         let linha = document.createElement('tr')
         tableBody.appendChild(linha);
-        let coluna = document.createElement('td');
-        linha.appendChild(coluna);
-        coluna.textContent = animalsContent[i].nome;
+        
+        let addColuna = document.createElement('td');
+        linha.appendChild(addColuna);
+        addColuna.textContent = animalsContent[i].nome;
+
+        addColuna = document.createElement('td');
+        linha.appendChild(addColuna);
+        addColuna.textContent = animalsContent[i].especie;
+
+        addColuna = document.createElement('td');
+        linha.appendChild(addColuna);
+        addColuna.textContent = animalsContent[i].pais;
+
+        addColuna = document.createElement('td');
+        linha.appendChild(addColuna);
+        addColuna.textContent = animalsContent[i].exemplares;
         
     }
 
