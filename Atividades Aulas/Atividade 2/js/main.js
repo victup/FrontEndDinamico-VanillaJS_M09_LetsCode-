@@ -3,13 +3,9 @@ let header = newTable.createTHead();
 let tableBody = newTable.createTBody();
 let footer = newTable.createTFoot();
 
-newTable.appendChild(header);
-newTable.appendChild(tableBody);
-newTable.appendChild(footer);
-
 document.body.appendChild(newTable);
 
-const titles = ['Nome', 'Especie', 'País', 'N Exemplares']
+const titles = ['Nome', 'Espécie', 'País', 'N° Exemplares']
 
 const animalsContent = [
     {
@@ -54,56 +50,61 @@ const animalsContent = [
 
     {
         "nome": "Papagaio",
-        "especie": "papagaio-mocho ou Kakapo",
+        "especie": "Papagaio-mocho ou Kakapo",
         "pais": "Nova Zelândia",
         "exemplares": "100"
       }
 ]
 
 
-function addAnimalsTable(animalsContent){
-    const arraySize = animalsContent.length;
-
-    for(let i = 0; i < arraySize; i++){
-        let linha = document.createElement('tr')
-        tableBody.appendChild(linha);
-        
-        let addColuna = document.createElement('td');
-        linha.appendChild(addColuna);
-        addColuna.textContent = animalsContent[i].nome;
-
-        addColuna = document.createElement('td');
-        linha.appendChild(addColuna);
-        addColuna.textContent = animalsContent[i].especie;
-
-        addColuna = document.createElement('td');
-        linha.appendChild(addColuna);
-        addColuna.textContent = animalsContent[i].pais;
-
-        addColuna = document.createElement('td');
-        linha.appendChild(addColuna);
-        addColuna.textContent = animalsContent[i].exemplares;
-        
-    }
+function addAnimalsTable(animalsContent) {
+  animalsContent.forEach(animal => 
+    mapObjectToCell(animal)
+  );
 
 }
 
-function addTitlesTable(titles){
-    const arraySize = titles.length;
+function mapObjectToCell(animal) {
+  const newRow = tableBody.insertRow();
 
-    let linha = document.createElement('tr')
-    header.appendChild(linha);
+  Object.values(animal).forEach(item => {
+    const newColumn = document.createElement('td');
+    newRow.appendChild(newColumn);
+    newColumn.textContent = item;
+  });
 
-    for(let i = 0; i < arraySize; i++){
-        
-        
-        let addTh = document.createElement('th');
-        linha.appendChild(addTh);
-        addTh.textContent = titles[i];
+}
 
-    }
+function addTitlesTable(titles) {
+  const headerRow = header.insertRow();
 
+  titles.forEach(function(title){
+    const headerCell = document.createElement('th');
+    headerRow.appendChild(headerCell);
+    headerCell.textContent = title;
+  });
+}
+
+function addTableStyle (){
+  document.body.style.backgroundColor = "#9E1C44";
+
+  header.style.backgroundColor = "rgba(255,255,255,0.3)";
+
+  tableBody.setAttribute("class", "tbl-content");
+  newTable.setAttribute("class", "table");
+}
+
+function addCSSFile () {
+  const link = document.createElement('link');
+ 
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = 'style.css';
+
+  document.getElementsByTagName('HEAD')[0].appendChild(link);
 }
 
 addTitlesTable(titles);
-addAnimalsTable(animalsContent)
+addAnimalsTable(animalsContent);
+addCSSFile();
+addTableStyle();
