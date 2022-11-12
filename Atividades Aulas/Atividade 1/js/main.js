@@ -21,31 +21,35 @@ const parser = new DOMParser();
 const documentXml = parser.parseFromString(textXML, 'text/xml');
 
 const divs = document.querySelectorAll('div');
-const title = document.createElement('h1');
-const description = document.createElement('p');
-const price = document.createElement('span');
 
-xmlSizeContent = documentXml.getElementsByTagName('produto').length;
 let xmlTitle = documentXml.getElementsByTagName('titulo');
 let xmlDescription = documentXml.getElementsByTagName('descricao');
 let xmlPrice = documentXml.getElementsByTagName('preco');
 
-
 let newTitle;
 let newDescription;
-let newPrice; 
+let newPrice;
 
- function buildStructureHtml(){
+function buildStructureHtml() {
+    let title;
+    let description;
+    let price;
+    
     divs.forEach((element, index) => {
-        newTitle = xmlTitle[index].childNodes[0].nodeValue;
-        newDescription = xmlDescription[index].childNodes[0].nodeValue;
-        newPrice = xmlPrice[index].childNodes[0].nodeValue;
 
-        divs[index].innerHTML = `
-            <h1>${newTitle}</h1>
-            <p>${newDescription}</p>
-            <span>${newPrice}</span>`
-        
+        title = document.createElement('h1');
+        description = document.createElement('p');
+        price = document.createElement('span');
+
+        newTitle = xmlTitle[index].childNodes[0].nodeValue;
+        divs[0].appendChild(title).textContent = newTitle;
+
+        newDescription = xmlDescription[index].childNodes[0].nodeValue;
+        divs[0].appendChild(description).textContent = newDescription;
+
+        newPrice = xmlPrice[index].childNodes[0].nodeValue;
+        divs[0].appendChild(price).textContent = newPrice;
+
     });
 }
 
